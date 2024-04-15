@@ -6,6 +6,7 @@ import { VRButton, XR, Controllers } from "@react-three/xr";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Environment, useTexture } from "@react-three/drei";
 import Image from "next/image";
+import { Form, Input, Label, Submit } from "r3f-form";
 
 export default function Home() {
   const [isVRActive, setIsVRActive] = useState(false);
@@ -13,6 +14,12 @@ export default function Home() {
   const handleVRButtonClick = () => {
     setIsVRActive(true);
   };
+
+  const [inputText, setInputText] = useState("Initial content");
+
+  function handleOnChange(e) {
+    setInputText(e.target.value);
+  }
 
   return (
     <>
@@ -46,6 +53,16 @@ export default function Home() {
             <Environment preset="park" />
             <Controllers />
             <LoginBar />
+
+            {/* <Form>
+              <Label text="username" />
+              <Input name="username" />
+
+              <Label text="password" />
+              <Input name="password" type="password" />
+
+              <Submit value="Login" />
+            </Form> */}
             <SidePlates />
           </XR>
         </Canvas>
