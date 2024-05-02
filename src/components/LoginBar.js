@@ -3,6 +3,8 @@ import { useThree } from "@react-three/fiber";
 import React, { useState, useRef } from "react";
 import { Interactive, toggleSession } from "@react-three/xr";
 import { Html } from "@react-three/drei";
+import { color } from "three/examples/jsm/nodes/Nodes.js";
+
 function LoginBar() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -43,55 +45,79 @@ function LoginBar() {
   const formPosY = formHeight / 2 - 0.5;
 
   return (
-    <group position={[0, 0, 2]}>
+    <group position={[-1, 0, 2]}>
       <Form position={[formPosX, formPosY, 0]} onSubmit={handleSubmit}>
-        <Label text="Kullanıcı Adı" position={[0, 0.6, 0]} color="black" />
-        <Interactive
-          onSelectStart={() => console.log("Username alanına tıklandı")}
-        >
-          <Input
-            selectionColor={"red"}
-            name="username"
-            position={[0, 0.4, 0]}
-            width={3}
-            height={0.5}
-            backgroundColor={"black"}
-            onChange={handleUsernameChange}
+        <group>
+          <Label
+            fontSize={0.1}
+            strokeOpacity={1}
+            text="Kullanıcı Adı"
+            position={[-1, 0.15, 0]}
+            color="white"
           />
-        </Interactive>
+          <Interactive
+            onSelectStart={() => console.log("Username alanına tıklandı")}
+          >
+            <Input
+              selectionColor={"white"}
+              name="username"
+              position={[1, 0.2, 0]}
+              width={3}
+              height={0.5}
+              backgroundColor={"white"}
+              onChange={handleUsernameChange}
+            />
+          </Interactive>
+        </group>
 
-        <Label text="Şifre" position={[0, -0.4, 0]} color="black" />
-        <Interactive
-          onSelectStart={() => console.log("Password alanına tıklandı")}
-        >
-          <Input
-            name="password"
-            type="password"
-            position={[0, -0.6, 0]}
-            width={3}
-            height={0.5}
-            backgroundColor={"black"}
-            onChange={handlePasswordChange}
+        <group>
+          <Label
+            text="Şifre"
+            fontSize={0.1}
+            position={[-1, -0.25, 0]}
+            color="white"
           />
-        </Interactive>
+          <Interactive
+            onSelectStart={() => console.log("Password alanına tıklandı")}
+          >
+            <Input
+              name="password"
+              type="password"
+              position={[1, -0.2, 0]}
+              width={3}
+              height={0.5}
+              backgroundColor={"white"}
+              onChange={handlePasswordChange}
+            />
+          </Interactive>
+        </group>
         <Interactive onSelectStart={handleClick}>
           <Html
-            position={[0, -1.2, 0]} // Yeni pozisyon
+            position={[0, -0.6, 0]} // Yeni pozisyon
             width={6} // Genişlik ayarı
             height={0.2}
             rotation={[0, Math.PI, 0]}
             fontSize={20}
-            color="white"
+            color="red"
           >
-            <button onClick={handleClick}>Login</button>
+            <button
+              // style={{
+              //   color: "white",
+              //   backgroundColor: "#OOA5B5",
+              //   border: "2px solid #00A5B5",
+              //   borderRadius: "50px",
+              //   padding: "10px 30px",
+              // }}
+              className="btn"
+              onClick={handleClick}
+            >
+              Giriş Yap
+            </button>
           </Html>
         </Interactive>
       </Form>
     </group>
   );
-  // //  position={[0, -1, 0]}
-  // width={3}
-  // height={0.2}
 }
 
 export default LoginBar;
