@@ -4,7 +4,7 @@ import {
   DefaultProperties,
 } from "@react-three/uikit";
 import React from "react";
-import { colors } from "./theme";
+import { colors } from "../apfel/theme";
 
 function getAribtrarySize(size: number) {
   const multiplier = size / 44;

@@ -9,10 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@coconut-xr/apfel-kruemel": "^0.0.6",
+    "@coconut-xr/koestlich": "^0.3.12",
+    "@coconut-xr/natuerlich": "^0.0.51",
     "@react-three/drei": "^9.105.1",
     "@react-three/fiber": "^8.16.1",
     "@react-three/uikit": "^0.3.0",
     "@react-three/uikit-apfel": "^0.3.0",
+    "@react-three/uikit-lucide": "^0.3.0",
     "@react-three/xr": "^5.7.1",
     "@types/three": "^0.163.0",
     "next": "14.1.4",
