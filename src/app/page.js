@@ -10,11 +10,16 @@ import {
   useXR,
   useTeleportation,
 } from "@react-three/xr";
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Environment, useTexture } from "@react-three/drei";
+import { Canvas, useFrame } from "@react-three/fiber";
+import {
+  OrbitControls,
+  Environment,
+  useTexture,
+  PerspectiveCamera,
+} from "@react-three/drei";
 import Image from "next/image";
 import { Form, Input, Label, Submit } from "r3f-form";
-import { Interactive, toggleSession } from "@react-three/xr";
+import { Interactive, toggleSession, use } from "@react-three/xr";
 import { Html } from "@react-three/drei";
 import SidePlatesVr from "../components/SidePlatesVr";
 import SimpleGround from "../components/Ground";
@@ -22,6 +27,12 @@ import SidePlates from "../components/SidePlates";
 import { XrUi, Layer } from "react-xr-ui";
 import SimpleGroundVr from "../components/GroundVr";
 import { Fullscreen, Container, Text } from "@react-three/uikit";
+function PlayerExample() {
+  const player = useXR((state) => state.player);
+  useFrame(() => void (player.position.z = 4));
+
+  return <></>;
+}
 
 export default function Home() {
   const [isVRActive, setIsVRActive] = useState(false);
@@ -86,14 +97,13 @@ export default function Home() {
             top: 0,
             left: 0,
           }}
-          onCreated={({ gl, scene, camera, player }) => {
-            gl.setSize(window.innerWidth, window.innerHeight);
-            scene.background = new THREE.Color(0x000000);
-            scene.fog = new THREE.Fog(0x000000, 0, 20);
-            camera.position.set(0, 3, -4);
+          camera={{
+            position: [0, 0, 8],
           }}
         >
           <XR>
+            <PlayerExample />
+            <PerspectiveCamera makeDefault position={[100, 100, 100]} />
             <ambientLight intensity={0.1} />
             <directionalLight intensity={0.4} position={[5, 5, 5]} />
             <SimpleGroundVr />
