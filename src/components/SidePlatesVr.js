@@ -12,6 +12,7 @@ import {
   Card,
   TabBar,
   TabBarItem,
+  Loading,
 } from "@react-three/uikit-apfel";
 import { BoxSelect, ChevronRight, Info } from "@react-three/uikit-lucide";
 import { Fullscreen, Container, Text, Root, Input } from "@react-three/uikit";
@@ -19,6 +20,15 @@ import { Avatar } from "./default/avatar";
 
 function SidePlatesVr() {
   const [activeTab, setActiveTab] = useState("Anasayfa");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleButtonClick = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 5000);
+  };
+
   const texture = useTexture("/gradient.png");
   const logo = useTexture("/bakircay2.png");
 
@@ -31,9 +41,15 @@ function SidePlatesVr() {
             <Text fontSize={20} fontWeight="bold">
               Derse Giris Kodunu Giriniz.
             </Text>
-            <Button variant="rect" size="md" platter>
+            <Button
+              variant="rect"
+              size="md"
+              platter
+              onClick={handleButtonClick}
+            >
               <Text>Baglan</Text>
             </Button>
+            {isLoading && <Loading size="lg" />}{" "}
           </>
         );
 
@@ -163,7 +179,7 @@ function SidePlatesVr() {
           <Avatar src="/avatar.jpg" />
         </Container>
         <Card
-          width={400}
+          width={500}
           height={200}
           borderRadius={32}
           padding={16}
@@ -179,13 +195,13 @@ function SidePlatesVr() {
             <Text>Anasayfa</Text>
           </TabBarItem>
           <TabBarItem value="Ders Programı" icon={<BoxSelect />}>
-            <Text>Ders Programı</Text>
+            <Text>Ders Programi</Text>
           </TabBarItem>
           <TabBarItem value="Dersler" icon={<BoxSelect />}>
             <Text>Dersler</Text>
           </TabBarItem>
           <TabBarItem value="Ders Hazırlığı" icon={<BoxSelect />}>
-            <Text>Ders Hazırlığı</Text>
+            <Text>Ders Hazirligi</Text>
           </TabBarItem>
         </TabBar>
       </Root>
