@@ -16,7 +16,7 @@ import {
 } from "@react-three/uikit-apfel";
 import { BoxSelect, ChevronRight, Info } from "@react-three/uikit-lucide";
 import { Fullscreen, Container, Text, Root, Input } from "@react-three/uikit";
-import { Avatar } from "./default/avatar";
+// import { Avatar } from "./default/avatar";
 
 function SidePlatesVr() {
   const [activeTab, setActiveTab] = useState("Anasayfa");
@@ -175,9 +175,9 @@ function SidePlatesVr() {
         alignItems="center"
         flexDirection="row"
       >
-        <Container alignItems="center">
+        {/* <Container alignItems="center">
           <Avatar src="/avatar.jpg" />
-        </Container>
+        </Container> */}
         <Card
           width={500}
           height={200}
