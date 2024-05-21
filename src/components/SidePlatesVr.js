@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useTexture } from "@react-three/drei";
 import FakeGlowMaterial from "./FakeGlowMaterial";
 import { Html } from "@react-three/drei";
@@ -13,13 +14,119 @@ import {
   TabBarItem,
 } from "@react-three/uikit-apfel";
 import { BoxSelect, ChevronRight, Info } from "@react-three/uikit-lucide";
-
 import { Fullscreen, Container, Text, Root, Input } from "@react-three/uikit";
 import { Avatar } from "./default/avatar";
 
 function SidePlatesVr() {
+  const [activeTab, setActiveTab] = useState("Anasayfa");
   const texture = useTexture("/gradient.png");
   const logo = useTexture("/bakircay2.png");
+
+  const renderCardContent = () => {
+    switch (activeTab) {
+      case "Anasayfa":
+        return (
+          <>
+            <Input defaultValue="#giriskodu" className="col-span-3" />
+            <Text fontSize={20} fontWeight="bold">
+              Derse Giris Kodunu Giriniz.
+            </Text>
+            <Button variant="rect" size="md" platter>
+              <Text>Baglan</Text>
+            </Button>
+          </>
+        );
+
+      case "Ders Programı":
+        return (
+          <List type="plain" width={400}>
+            <ListItem
+              subtitle={<Text>13.30 17.05.2024</Text>}
+              leadingAccessory={<BoxSelect height={16} width={16} />}
+              trailingAccessory={
+                <Button variant="icon" size="xs" platter>
+                  <Info height={14} width={14} />
+                </Button>
+              }
+            >
+              <Text>Isletim Sistemleri</Text>
+            </ListItem>
+            <ListItem
+              subtitle={<Text>15.30 17.05.2024</Text>}
+              leadingAccessory={<BoxSelect height={16} width={16} />}
+              trailingAccessory={
+                <Button variant="icon" size="xs" platter>
+                  <Info height={14} width={14} />
+                </Button>
+              }
+            >
+              <Text>Yapay Zeka</Text>
+            </ListItem>
+            <ListItem
+              subtitle={<Text>17.30 17.05.2024</Text>}
+              leadingAccessory={<BoxSelect height={16} width={16} />}
+              trailingAccessory={
+                <Button variant="icon" size="xs" platter>
+                  <Info height={14} width={14} />
+                </Button>
+              }
+            >
+              <Text>UI && UX Dizayn ve Tasarim Surecleri</Text>
+            </ListItem>
+          </List>
+        );
+
+      case "Dersler":
+        return (
+          <List type="plain" width={400}>
+            <ListItem
+              subtitle={<Text>13.30 17.05.2024</Text>}
+              leadingAccessory={<BoxSelect height={16} width={16} />}
+              trailingAccessory={
+                <Button variant="icon" size="xs" platter>
+                  <Info height={14} width={14} />
+                </Button>
+              }
+            >
+              <Text>Isletim Sistemleri</Text>
+            </ListItem>
+            <ListItem
+              subtitle={<Text>15.30 17.05.2024</Text>}
+              leadingAccessory={<BoxSelect height={16} width={16} />}
+              trailingAccessory={
+                <Button variant="icon" size="xs" platter>
+                  <Info height={14} width={14} />
+                </Button>
+              }
+            >
+              <Text>Yapay Zeka</Text>
+            </ListItem>
+            <ListItem
+              subtitle={<Text>17.30 17.05.2024</Text>}
+              leadingAccessory={<BoxSelect height={16} width={16} />}
+              trailingAccessory={
+                <Button variant="icon" size="xs" platter>
+                  <Info height={14} width={14} />
+                </Button>
+              }
+            >
+              <Text>UI && UX Dizayn ve Tasarim Surecleri</Text>
+            </ListItem>
+          </List>
+        );
+      case "Ders Hazırlığı":
+        return (
+          <>
+            <Text fontSize={24} fontWeight="bold">
+              Ders Hazırlığı
+            </Text>
+            <Input defaultValue="Hazırlık Notları" className="col-span-3" />
+          </>
+        );
+      default:
+        return null;
+    }
+  };
 
   return (
     <>
@@ -64,97 +171,21 @@ function SidePlatesVr() {
           alignItems="flex-start"
           gapRow={16}
         >
-          <Input defaultValue="#giriskodu" className="col-span-3" />
-          <Text fontSize={20} fontWeight="bold">
-            Derse Giris Kodunu Giriniz.
-          </Text>
-          <Button variant="rect" size="md" platter>
-            <Text>Baglan</Text>
-          </Button>
+          {renderCardContent()}
         </Card>
 
-        {/* <Card
-          width={400}
-          height={200}
-          borderRadius={32}
-          padding={16}
-          flexDirection="column"
-          alignItems="flex-start"
-          gapRow={16}
-        >
-          <Text fontSize={24} fontWeight="bold">
-            Ders Programi
-          </Text>
-          <Input defaultValue="something" className="col-span-3" />
-        </Card> */}
-
-        <Card borderRadius={32} padding={16}>
-          <List type="plain" width={400}>
-            <ListItem
-              subtitle={<Text>13.30 17.05.2024</Text>}
-              leadingAccessory={<BoxSelect height={16} width={16} />}
-              trailingAccessory={
-                <Button variant="icon" size="xs" platter>
-                  <Info height={14} width={14} />
-                </Button>
-              }
-            >
-              <Text>Isletim Sistemleri</Text>
-            </ListItem>
-            <ListItem
-              subtitle={<Text>15.30 17.05.2024</Text>}
-              leadingAccessory={<BoxSelect height={16} width={16} />}
-              trailingAccessory={
-                <Button variant="icon" size="xs" platter>
-                  <Info height={14} width={14} />
-                </Button>
-              }
-            >
-              <Text>Yapay Zeka</Text>
-            </ListItem>
-            <ListItem
-              subtitle={<Text>17.30 17.05.2024</Text>}
-              leadingAccessory={<BoxSelect height={16} width={16} />}
-              trailingAccessory={
-                <Button variant="icon" size="xs" platter>
-                  <Info height={14} width={14} />
-                </Button>
-              }
-            >
-              <Text>UI && UX Dizayn ve Tasarim Surecleri</Text>
-            </ListItem>
-          </List>
-        </Card>
-
-        {/* <Card
-          borderRadius={32}
-          padding={16}
-          flexDirection="column"
-          alignItems="flex-start"
-          gapRow={16}
-        >
-          <Tabs defaultValue="1">
-            <TabsButton value="1">
-              <Text>Anasayfa</Text>
-            </TabsButton>
-            <TabsButton value="2">
-              <Text>Dersler</Text>
-            </TabsButton>
-            <TabsButton value="3">
-              <Text>Ders Hazirligi</Text>
-            </TabsButton>
-          </Tabs>
-        </Card> */}
-
-        <TabBar defaultValue="1">
+        <TabBar defaultValue="Anasayfa" onValueChange={setActiveTab}>
           <TabBarItem value="Anasayfa" icon={<BoxSelect />}>
             <Text>Anasayfa</Text>
+          </TabBarItem>
+          <TabBarItem value="Ders Programı" icon={<BoxSelect />}>
+            <Text>Ders Programı</Text>
           </TabBarItem>
           <TabBarItem value="Dersler" icon={<BoxSelect />}>
             <Text>Dersler</Text>
           </TabBarItem>
           <TabBarItem value="Ders Hazırlığı" icon={<BoxSelect />}>
-            <Text>Ders Hazirligi</Text>
+            <Text>Ders Hazırlığı</Text>
           </TabBarItem>
         </TabBar>
       </Root>
